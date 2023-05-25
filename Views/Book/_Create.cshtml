@@ -1,0 +1,24 @@
+﻿@model BookViewModel
+
+<form asp-action="Create" method="post" onsubmit="handlerCreateBook(event)">
+    <div id="errorNotification">
+
+    </div>
+
+    <label asp-for="Isbn"></label>
+    <input asp-for="Isbn" />
+
+    <label asp-for="Title"></label>
+    <input asp-for="Title" />
+
+    <label asp-for="Category"></label>
+    <select asp-items="@ViewBag.Categories" id="Category" name="Category"></select>
+
+    <label asp-for="Price"></label>
+    <input asp-for="Price" />
+
+    <input type="submit" value="افزودن" />
+    <button onclick="cancel()">
+        لغو
+    </button>
+</form>

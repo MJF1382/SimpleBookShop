@@ -1,0 +1,24 @@
+﻿@model BookViewModel
+
+<form asp-action="Edit" method="post" onsubmit="handlerEditBook(event)">
+    <div id="errorNotification">
+
+    </div>
+
+    <label asp-for="Isbn"></label>
+    <input asp-for="Isbn" readonly />
+
+    <label asp-for="Title"></label>
+    <input asp-for="Title" />
+
+    <label asp-for="Category"></label>
+    <select asp-items="@ViewBag.Categories" asp-for="Category"></select>
+
+    <label asp-for="Price"></label>
+    <input asp-for="Price" />
+
+    <input type="submit" value="ویرایش" />
+    <button onclick="cancel()">
+        لغو
+    </button>
+</form>

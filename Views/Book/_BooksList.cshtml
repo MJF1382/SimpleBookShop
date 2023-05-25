@@ -1,0 +1,50 @@
+﻿@model List<BookViewModel>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                شابک
+            </th>
+            <th>
+                عنوان
+            </th>
+            <th>
+                دسته بندی
+            </th>
+            <th>
+                قیمت
+            </th>
+            <th>
+                عملیات
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (BookViewModel book in Model)
+        {
+            <tr>
+                <td>
+                    @book.Isbn.ToPersianNumber()
+                </td>
+                <td>
+                    @book.Title.ToPersianNumber()
+                </td>
+                <td>
+                    @book.Category.ToPersianNumber()
+                </td>
+                <td>
+                    @book.Price.ToString().ToPersianNumber()
+                </td>
+                <td>
+                    <a asp-action="Edit" data-isbn="@book.Isbn" onclick="editBook(event)">
+                        ویرایش
+                    </a>
+                    <a asp-action="Delete" data-isbn="@book.Isbn" onclick="deleteBook(event)">
+                        حذف
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
