@@ -1,6 +1,6 @@
 ﻿@model string
 
-<div class="modal-center modal-delete">
+<div class="modal-base modal-delete">
     <form asp-action="DeleteConfirm" method="delete" onsubmit="handlerDeleteBook(event)">
         <input type="hidden" name="id" id="id" value="@Model" />
         <div class="modal-content">

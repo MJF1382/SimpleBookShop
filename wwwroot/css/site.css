@@ -414,13 +414,14 @@ table {
     width: 100%;
 }
 
-.modal-center {
+.modal-base {
     border-radius: 7px;
     position: absolute;
     z-index: 10;
     top: 50%;
     right: 50%;
     transform: translate(50%, -50%);
+    background-color: white;
 }
 
 /*#endregion*/
@@ -429,7 +430,6 @@ table {
 
 .modal-delete {
     width: 280px;
-    background-color: white;
 }
 
 .modal-delete-mainicon {
@@ -456,7 +456,6 @@ table {
 
 .modal-message {
     width: 280px;
-    background-color: white;
 }
 
 .modal-message-mainicon {
@@ -476,6 +475,16 @@ table {
     font-size: 12px;
     margin-top: 10px;
 }
+
+/*#endregion*/
+
+/*#region [CreateEditModal]*/
+
+.modal-createedit {
+    width: 280px;
+}
+
+
 
 /*#endregion*/
 
