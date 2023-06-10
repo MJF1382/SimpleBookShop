@@ -1,0 +1,34 @@
+﻿@model string
+@{
+    bool isMessageSuccess = (MessageType)ViewBag.MessageType == MessageType.Success;
+}
+
+<div class="modal-center modal-message">
+    <div class="modal-content">
+        <a class="btn-close" onclick="cancel()">
+            <i class="fa-solid fa-xmark"></i>
+        </a>
+        @if (isMessageSuccess)
+        {
+            <i class="fa-solid fa-circle-check modal-message-mainicon text-success"></i>
+            <p class="modal-message-title text-success">
+                عملیات موفق!
+            </p>
+        }
+        else
+        {
+            <i class="fa-solid fa-circle-xmark modal-message-mainicon text-darkerror"></i>
+            <p class="modal-message-title text-darkerror">
+                خطا!
+            </p>
+        }
+        <p class="modal-delete-description">
+            @ViewBag.Message
+        </p>
+        <div class="modal-operation">
+            <a class="btn-operation @(isMessageSuccess ? "bg-success" : "bg-darkerror")" style="width: 65%;height: 42px;flex-grow: 0;font-size: 12px;" onclick="cancel()">
+                بستن
+            </a>
+        </div>
+    </div>
+</div>
