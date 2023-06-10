@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SimpleBookShop.Helpers.Classes;
+using SimpleBookShop.Helpers.Extensions;
 using SimpleBookShop.Models;
 using SimpleBookShop.Models.Entities;
 using SimpleBookShop.Models.ViewModels;
@@ -19,21 +20,38 @@ namespace SimpleBookShop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            
+            int count = await _context.Books.CountAsync();
+
+            ViewBag.ItemsCount = count.ToString();
 
             return View();
         }
 
-        public async Task<IActionResult> GetBooksList()
+        public async Task<IActionResult> GetBooksList(string title = "", int pageIndex = 0)
         {
-            List<BookViewModel> model = await (from book in _context.Books.Include(p => p.Category)
-                                               select new BookViewModel()
-                                               {
-                                                   Isbn = book.Isbn,
-                                                   Title = book.Title,
-                                                   Category = book.Category.Name,
-                                                   Price = book.Price
-                                               }).ToListAsync();
+            if (title.HasValue() == false)
+            {
+                title = "";
+            }
+
+            List<BookViewModel> model = await _context.Books
+                .Where(p => p.Title.Contains(title))
+                .Select(book => new BookViewModel()
+                {
+                    Isbn = book.Isbn,
+                    Title = book.Title,
+                    Category = book.Category.Name,
+                    Price = book.Price
+                })
+                .OrderBy(p => p.Isbn)
+                .ToListAsync();
+
+            ViewBag.PageCount = Math.Ceiling(model.Count / 5.0);
+
+            model = model
+                .Skip(pageIndex * 5)
+                .Take(5)
+                .ToList();
 
             return PartialView("_BooksList", model);
         }
@@ -167,6 +185,14 @@ namespace SimpleBookShop.Controllers
             {
                 return new Result(Helpers.Enums.ResultType.Failed, NotFound_Error);
             }
+        }
+
+        public IActionResult ShowMessage(string message, MessageType messageType)
+        {
+            ViewBag.MessageType = messageType;
+            ViewBag.Message = message;
+
+            return PartialView("_PopupMessage");
         }
     }
 }
