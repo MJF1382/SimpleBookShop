@@ -2,11 +2,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<a asp-action="Create" id="createBook">
-    افزودن کتاب جدید
-</a>
-<div id="body"></div>
-<div id="modalContainer"></div>
+<div class="body-header">
+    <span class="body-header-title">
+        کتاب ها
+    </span>
+    <a asp-action="Create" class="btn-add" id="createBook">
+        <i class="fa-solid fa-plus"></i>
+        <span>
+            افزودن کتاب جدید
+        </span>
+    </a>
+</div>
+<div class="body-content">
+    <div class="tabcontrol" id="tabcontrol">
+        <div class="tebitem tabitem-active">
+            <button class="tabitem-button" onclick="handlerTabItemSelect(event)">
+                کل کتاب ها
+            </button>
+            <div class="tabitem-body">
+                <div class="tabitem-body-header">
+                    <span class="title">
+                        @((ViewBag.ItemsCount as string).ToPersianNumber()) کتاب
+                    </span>
+                    <div class="filter">
+                        <label>
+                            فیلتر بر اساس
+                        </label>
+                        <input type="text" class="textbox" id="txtSearch" oninput="handlerSearch(event)" />
+                    </div>
+                </div>
+                <div class="tabitem-body-content" id="tableContent">
+                </div>
+                <div class="tabitem-body-footer">
+                    <div class="pagination" id="pagination">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tebitem">
+            <button class="tabitem-button" onclick="handlerTabItemSelect(event)">
+                کتاب های فروخته شده
+            </button>
+            <div class="tabitem-body">
+                Sold
+            </div>
+        </div>
+        <div class="tebitem">
+            <button class="tabitem-button" onclick="handlerTabItemSelect(event)">
+                کتاب های فروخته نشده
+            </button>
+            <div class="tabitem-body">
+                UnSold
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts
 {
