@@ -19,10 +19,6 @@ a {
 
 /*#region [Main]*/
 
-#modal {
-    margin-top: 30px;
-}
-
 .container {
     min-height: 100vh;
     display: grid;
@@ -481,10 +477,111 @@ table {
 /*#region [CreateEditModal]*/
 
 .modal-createedit {
-    width: 280px;
+    width: 460px;
+    padding: 25px;
+    border-radius: 10px;
 }
 
+    .modal-createedit form {
+        display: flex;
+        flex-direction: column;
+    }
 
+.modal-createedit-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 12px;
+    padding: 0 0 23px 0;
+    border-bottom: 1px solid rgb(232, 236, 239);
+}
+
+.modal-createedit-header-title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.modal-createedit-header-icon {
+    font-size: 25px;
+}
+
+.modal-createedit-body {
+    padding: 25px 0 30px 0;
+    border-bottom: 1px solid rgb(232, 236, 239);
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+}
+
+.modal-createedit-footer {
+    padding: 30px 0 0 0;
+    border-top: 1px solid rgb(232, 236, 239);
+}
+
+    .modal-createedit-footer .btn-operation {
+        height: 38px;
+    }
+
+/*#endregion*/
+
+/*#region Field*/
+
+.group-fields {
+    display: flex;
+    gap: 13px;
+}
+
+    .group-fields .field {
+        width: 50%;
+        justify-content: center;
+    }
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+    .field label {
+        font-weight: bold;
+        font-size: 13px;
+    }
+
+    .field input {
+        border: 2px solid rgb(213, 213, 213);
+        border-radius: 7px;
+        padding: 10px;
+        background-color: white;
+        font-family: Shabnam;
+        outline: none;
+    }
+
+        .field input[readonly] {
+            background-color: rgb(232, 232, 232);
+        }
+
+        .field input:focus {
+            border-color: rgb(158, 138, 242);
+        }
+
+        .field input::placeholder {
+            font-family: Shabnam;
+            color: rgb(213, 213, 213);
+        }
+
+    .field select {
+        border: 2px solid rgb(213, 213, 213);
+        border-radius: 7px;
+        padding: 8px;
+        background-color: white;
+        font-family: Shabnam;
+        outline: none;
+        cursor: pointer;
+    }
+
+        .field select:focus {
+            border-color: rgb(158, 138, 242);
+        }
 
 /*#endregion*/
 
@@ -567,6 +664,10 @@ table {
 
 /*#region [Color]*/
 
+.bg-primary {
+    background-color: rgb(99, 74, 206);
+}
+
 .bg-cancel {
     background-color: rgb(193, 193, 193);
 }
@@ -581,6 +682,10 @@ table {
 
 .bg-success {
     background-color: rgb(76, 175, 80);
+}
+
+.text-primary {
+    color: rgb(99, 74, 206);
 }
 
 .text-cancel {
