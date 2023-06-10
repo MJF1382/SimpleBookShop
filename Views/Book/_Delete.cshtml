@@ -1,16 +1,25 @@
 ﻿@model string
 
-<form asp-action="DeleteConfirm" method="delete" onsubmit="handlerDeleteBook(event)">
-    <div id="errorNotification">
-
-    </div>
-    <input type="hidden" name="id" id="id" value="@Model" />
-    <p>
-        آیا از حذف کتاب با شابک @(Model) اطمینان دارید؟
-    </p>
-
-    <input type="submit" value="حذف" />
-    <button onclick="cancel()">
-        لغو
-    </button>
-</form>
+<div class="modal-center modal-delete">
+    <form asp-action="DeleteConfirm" method="delete" onsubmit="handlerDeleteBook(event)">
+        <input type="hidden" name="id" id="id" value="@Model" />
+        <div class="modal-content">
+            <a class="btn-close" onclick="cancel()">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+            <i class="fa-solid fa-circle-xmark modal-delete-mainicon"></i>
+            <p class="modal-delete-title">
+                مطمعنی میخوای حذف کنی؟
+            </p>
+            <p class="modal-delete-description">
+                عملیات حذف کردن غیر قابل برگشته!!!
+            </p>
+            <div class="modal-operation">
+                <input class="btn-operation bg-error" type="submit" value="حذف" />
+                <a class="btn-operation bg-cancel" onclick="cancel()">
+                    لغو
+                </a>
+            </div>
+        </div>
+    </form>
+</div>
