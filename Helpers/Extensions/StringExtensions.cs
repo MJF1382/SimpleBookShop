@@ -21,7 +21,7 @@
             }
         }
 
-        public static string ToPersianNumber(this string input)
+        public static string? ToPersianNumber(this string input)
         {
             try
             {
@@ -47,7 +47,7 @@
             }
         }
 
-        public static string ToEnglishNumber(this string input)
+        public static string? ToEnglishNumber(this string input)
         {
             try
             {
@@ -66,6 +66,33 @@
                     .Replace("۹", "9");
 
                 return newString;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static string? ToPrice(this string input)
+        {
+            try
+            {
+                input = input.Reverse().ToString();
+                string priceFormat = "";
+
+                for (int i = 0; i < input.Length; i++)
+                {
+                    if (i + 1 % 3 == 0)
+                    {
+                        priceFormat += "/";
+                    }
+                    else
+                    {
+                        priceFormat += input;
+                    }
+                }
+
+                return input;
             }
             catch
             {
