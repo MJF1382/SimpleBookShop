@@ -1,6 +1,9 @@
 ﻿@model List<BookViewModel>
 
-<table>
+
+<input type="hidden" id="PageCount" value="@("pagecount" + ViewBag.PageCount + "pagecount")" />
+
+<table cellspacing="0">
     <thead>
         <tr>
             <th>
@@ -24,7 +27,7 @@
         @foreach (BookViewModel book in Model)
         {
             <tr>
-                <td>
+                <td class="td-number">
                     @book.Isbn.ToPersianNumber()
                 </td>
                 <td>
@@ -33,16 +36,18 @@
                 <td>
                     @book.Category.ToPersianNumber()
                 </td>
-                <td>
+                <td class="td-number">
                     @book.Price.ToString().ToPersianNumber()
                 </td>
                 <td>
-                    <a asp-action="Edit" data-isbn="@book.Isbn" onclick="editBook(event)">
-                        ویرایش
-                    </a>
-                    <a asp-action="Delete" data-isbn="@book.Isbn" onclick="deleteBook(event)">
-                        حذف
-                    </a>
+                    <div class="operation">
+                        <a asp-action="Edit" data-isbn="@book.Isbn" onclick="editBook(event)" class="icon icon-edit">
+                            <i class="fa-solid fa-pen"></i>
+                        </a>
+                        <a asp-action="Delete" data-isbn="@book.Isbn" onclick="deleteBook(event)" class="icon icon-delete">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </div>
                 </td>
             </tr>
         }
