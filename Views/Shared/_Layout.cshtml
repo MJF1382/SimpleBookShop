@@ -1,14 +1,90 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="rtl">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-        BookShop
+        @if (IsSectionDefined("Title"))
+        {
+            RenderSection("Title");
+        }
+        else
+        {
+            <text>
+                فروشگاه کتاب
+            </text>
+        }
     </title>
 
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
 </head>
 <body>
-    @RenderBody()
+    <div class="container">
+        <div class="menu">
+            <button class="btn-icon btn-menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div style="display:flex;gap: 15px;">
+                <button class="btn-icon btn-menu">
+                    <i class="fa-solid fa-bell"></i>
+                </button>
+                <button class="btn-icon btn-menu" style="background-color:rgb(215, 220, 223);">
+                    <i class="fa-solid fa-gear"></i>
+                </button>
+            </div>
+        </div>
+        <div class="dashboard">
+            <div class="dashboard-header">
+                <span class="dashboard-header-title">
+                    فروشگاه کتاب
+                </span>
+                <span class="dashboard-header-description">
+                    کتاب ها
+                </span>
+            </div>
+            <div class="dashboard-body">
+                <button class="dashboard-body-button">
+                    <i class="fa-solid fa-book"></i>
+                    <span>
+                        کتاب ها
+                    </span>
+                </button>
+                <button class="dashboard-body-button">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>
+                        دسته بندی ها
+                    </span>
+                </button>
+                <button class="dashboard-body-button">
+                    <i class="fa-solid fa-users"></i>
+                    <span>
+                        مشتریان
+                    </span>
+                </button>
+                <button class="dashboard-body-button">
+                    <i class="fa-solid fa-receipt"></i>
+                    <span>
+                        خرید ها
+                    </span>
+                </button>
+            </div>
+        </div>
+        <div class="body">
+            @RenderBody()
+        </div>
+    </div>
+
+    <div id="modalContainer">
+        <div id="modalMask">
+
+        </div>
+        <div id="modalBody">
+
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/268d4422f1.js" crossorigin="anonymous"></script>
+    @RenderSection("Scripts")
 </body>
 </html>
