@@ -1,24 +1,41 @@
 ﻿@model BookViewModel
 
-<form asp-action="Edit" method="post" onsubmit="handlerEditBook(event)">
-    <div id="errorNotification">
-
-    </div>
-
-    <label asp-for="Isbn"></label>
-    <input asp-for="Isbn" readonly />
-
-    <label asp-for="Title"></label>
-    <input asp-for="Title" />
-
-    <label asp-for="Category"></label>
-    <select asp-items="@ViewBag.Categories" asp-for="Category"></select>
-
-    <label asp-for="Price"></label>
-    <input asp-for="Price" />
-
-    <input type="submit" value="ویرایش" />
-    <button onclick="cancel()">
-        لغو
-    </button>
-</form>
+<div class="modal-base modal-createedit">
+    <form asp-action="Edit" method="post" onsubmit="handlerEditBook(event)">
+        <div class="modal-createedit-header">
+            <i class="fa-solid fa-book-medical modal-createedit-header-icon"></i>
+            <p class="modal-createedit-header-title">
+                @Model.Title
+            </p>
+            <a class="btn-close" style="margin: 0;margin-right: auto;" onclick="cancel()">
+                <i class="fa-solid fa-xmark"></i>
+            </a>
+        </div>
+        <div class="modal-createedit-body">
+            <div class="field">
+                <label asp-for="Isbn"></label>
+                <input asp-for="Isbn" placeholder="شابک" style="font-family: 'Signika Negative';" readonly />
+            </div>
+            <div class="field">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" placeholder="عنوان" />
+            </div>
+            <div class="group-fields">
+                <div class="field">
+                    <label asp-for="Category"></label>
+                    <select asp-items="@ViewBag.Categories" id="Category" name="Category"></select>
+                </div>
+                <div class="field">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" placeholder="قیمت" style="font-family: 'Signika Negative';" />
+                </div>
+            </div>
+        </div>
+        <div class="modal-createedit-footer modal-operation">
+            <input class="btn-operation bg-primary" type="submit" value="ویرایش" />
+            <a class="btn-operation bg-cancel" onclick="cancel()">
+                لغو
+            </a>
+        </div>
+    </form>
+</div>
